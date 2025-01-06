@@ -122,3 +122,9 @@ curl --location 'localhost:8086/api/auth/login' \
 
 - User admin digunakan untuk membuat User Login Lain : http://localhost:8086/swagger-ui/index.html#/Create%20User%20Login%20Controller/registerUser
 dengan menggunakan USER ADMIN JWT token
+
+# Context
+- Table user_login = penyimpanan user login, digunakan untuk verifikasi login 
+- Table users = digunakan untuk transaksi
+- Table account = digunakan untuk accout users, dengan balance
+- Table transaction = digunakan untuk mencatat transaksi terhadap account balance
