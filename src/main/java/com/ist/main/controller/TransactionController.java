@@ -7,6 +7,8 @@ import com.ist.main.enums.TransactionType;
 import com.ist.main.exception.BusinessException;
 import com.ist.main.service.interfaces.ITransactionService;
 import java.time.LocalDate;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/transaction")
 @RequiredArgsConstructor
+@Tag(name = "Transaction Controller", description = "API for Authentication")
 public class TransactionController {
 
     private final ITransactionService transactionService;

@@ -43,14 +43,14 @@ public class UserLoginService implements IUserLoginService {
         user.setUsername(requestDto.getUsername());
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
 
-        Set<String> strRoles = requestDto.getRole();
+        Set<RoleEnum> strRoles = requestDto.getRole();
         Set<Role> roles = new HashSet<>();
         Optional<Role> optionalRoleAsUser = roleRepository.findByName(RoleEnum.ROLE_USER);
         if (CollectionUtils.isEmpty(strRoles)) {
-            optionalRoleAsUser.orElseThrow(throwsNoRoleUserError);
+            roles.add(optionalRoleAsUser.orElseThrow((throwsNoRoleUserError)));
         } else {
-            for (String roleName : strRoles) {
-                if (roleName.equals(RoleEnum.ROLE_ADMIN.name())) {
+            for (RoleEnum roleName : strRoles) {
+                if (roleName.equals(RoleEnum.ROLE_ADMIN)) {
                     Role roleAsAdmin =
                             roleRepository.findByName(RoleEnum.ROLE_ADMIN).orElseThrow((throwsNoUserAdminError));
                     roles.add(roleAsAdmin);

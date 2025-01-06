@@ -3,6 +3,8 @@ package com.ist.main.controller;
 import com.ist.main.dto.AuthRequestDto;
 import com.ist.main.dto.AuthResponseDto;
 import com.ist.main.jwtauth.util.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Auth Controller", description = "API for Authentication")
 public class AuthController {
 
     @Autowired
@@ -27,6 +30,7 @@ public class AuthController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Operation(summary = "Login", description = "Login Here before accessing main API, return JWT token")
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequestDto authRequest) throws Exception {
         try {

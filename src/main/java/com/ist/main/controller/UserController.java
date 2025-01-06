@@ -4,6 +4,8 @@ import com.ist.main.dto.UserRequestDto;
 import com.ist.main.entity.User;
 import com.ist.main.exception.BusinessException;
 import com.ist.main.service.interfaces.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -22,26 +24,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@Tag(name = "User Controller", description = "API for Any User Management Related To Transactions")
 public class UserController {
 
     private final IUserService userService;
 
     @GetMapping
+    @Operation(summary = "Get ALL user", description = "Get ALL user")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 
     @PostMapping
+    @Operation(summary = "Create New user", description = "Create New user")
     public ResponseEntity<User> add(@RequestBody @Valid UserRequestDto user) {
         return ResponseEntity.ok(userService.add(user));
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Find By Id user", description = "Find By Id user")
     public ResponseEntity<User> findById(@PathVariable String id) throws BusinessException {
         return ResponseEntity.ok(userService.findById(id));
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update User", description = "Update User")
     public ResponseEntity<User> update(@PathVariable String id, @RequestBody UserRequestDto userRequestDto)
             throws BusinessException {
         return ResponseEntity.ok(userService.update(id, userRequestDto));
@@ -49,6 +56,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Delete user", description = "soft delete user")
     public void delete(@PathVariable String id) {
         userService.delete(id);
     }

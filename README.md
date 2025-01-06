@@ -10,7 +10,7 @@ lalu clone:
     git clone https://github.com/bennyindra/ist.git
 ```
 
-#  2.2 Run on console
+#  2.1 Run on console
 1. Buka console(win: powershell) lalu arahkan path ke project git di clone (misal: C:\Users\lenovo\projects\task\ist>)
 2. Masuk ke dalam root project ist
 3. ```.\gradlew :bootRun```
@@ -73,14 +73,52 @@ dapat di akses melalui http://localhost:8086/swagger-ui/index.html
 via console:
 1. Masuk ke root project ist
 2. Jalankan ```.\gradlew :test```
+
 via intellij:
 1. Buka project menggunakan intellij
 2. Pada Tab Gradle: ist -> Tasks -> Verification -> test
 
 # NOTES
 
-Project Spec: 
+# Project Spec: 
  - java versi 17
  - Spring boot versi 3.4.1
  - gradle versi >= 7.*
- - 
+
+# Menggunakan API:
+- login menggunakan user menggunakan (username: user001, password: password), ex:
+```curl
+curl --location 'localhost:8086/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data '{
+    "username": "admin001",
+    "password": "password"
+}'
+```
+
+- login menggunakan user admin, user admin digunakan untuk membuat user login lainnya 
+sbb:
+```curl
+curl --location 'localhost:8086/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data '{
+    "username": "admin001",
+    "password": "password"
+}'
+```
+- api ini akan menghasilkan JWT token, ex:
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjAwMSIsImlhdCI6MTczNjE0OTc5NSwiZXhwIjoxNzM2MTUzMzk1fQ.MtZ6YmXPkVQZ9SAu5X_SRZTlDyhziNxllTtOGs8FehE"
+}
+```
+- dapat juga menggunakan http://localhost:8086/swagger-ui/index.html#/Auth%20Controller/createAuthenticationToken
+- USER ->
+"username": "user001",
+"password": "password"
+- USER ADMIN->
+  "username": "admin001",
+  "password": "password"
+
+- User admin digunakan untuk membuat User Login Lain : http://localhost:8086/swagger-ui/index.html#/Create%20User%20Login%20Controller/registerUser
+dengan menggunakan USER ADMIN JWT token
