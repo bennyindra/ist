@@ -10,13 +10,7 @@ lalu clone:
     git clone https://github.com/bennyindra/ist.git
 ```
 
-#  2.1 Run on console
-1. Buka console(win: powershell) lalu arahkan path ke project git di clone (misal: C:\Users\lenovo\projects\task\ist>)
-2. Masuk ke dalam root project ist
-3. ```.\gradlew :bootRun```
-
-#  2.2 Run on Docker
-
+#  2 Run on Docker
 Pastikan docker sudah terinstall, (https://medium.com/netshoot/tutorial-docker-bahasa-indonesia-3-instalasi-docker-di-windows-10-dan-linux-423b4936e085)
 
 1. Buka console(win: powershell/cmd) lalu arahkan path ke project git di clone (misal: C:\Users\lenovo\projects\task\ist>)
@@ -26,6 +20,7 @@ Pastikan docker sudah terinstall, (https://medium.com/netshoot/tutorial-docker-b
 5. Buat container ```docker-compose create```
 6. Jalankan container ```docker-compose start```
 7. Check container ```docker ps```
+8. Jika 'ist' gagal up kemungkinan karena db postgres lagi proses up, silahkan ulang ```docker-compose start``` atau start dari Docker Desktop
 
 
 # 3. Akses ke API Swagger/ Open API
