@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changelog/init.sql
+  - include:
+      file: liquibase/changelog/init2.sql
+  - include:
+      file: liquibase/changelog/changelog-1.sql
+  - include:
+      file: liquibase/changelog/auth.sql
+  - include:
+      file: liquibase/changelog/insert-auth.sql
+  - include:
+      file: liquibase/changelog/changelog-2.sql

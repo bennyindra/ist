@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: ist
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:password}
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+  liquibase:
+    change-log: classpath:/liquibase/changelog.yml
+  mvc:
+    format:
+      date: dd-MM-yyyy
+
+server:
+  port: 8086
+
+jwt:
+  secret: qwerty123!@#
+  expiration: 3600
+
+logging:
+  level:
+    org.springframework.security: TRACE

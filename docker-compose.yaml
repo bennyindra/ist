@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+
+  users:
+    image: ist:latest
+    container_name: users
+    ports:
+      - "8086:8086"
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=postgres
+      - DATABASE_PORT=5432
+    depends_on:
+      - postgres
+    volumes:
+      - ./users-data:/app/data

@@ -1,0 +1,1 @@
+alter table user_login add column deleted bool not null default false;
